@@ -4,7 +4,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
-export class UserService {
+export class UsersService {
   create(createUserDto: CreateUserDto) {
     throw new Error('Method not implemented.');
   }
@@ -13,7 +13,7 @@ export class UserService {
   }
   constructor(private prisma: PrismaService) {}
 
-  get(id: number) {
+  async get(id: number): Promise<User | undefined> {
     return this.prisma.user.findUnique({ where: { id } });
   }
 
