@@ -5,16 +5,16 @@ import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
-    throw new Error('Method not implemented.');
+  async create(createUserDto: CreateUserDto) {
+    return this.prisma.create()
   }
   getAll() {
     throw new Error('Method not implemented.');
   }
   constructor(private prisma: PrismaService) {}
 
-  async get(id: number): Promise<User | undefined> {
-    return this.prisma.user.findUnique({ where: { id } });
+  async findOne(email: string): Promise<User | undefined> {
+    return this.prisma.user.findUnique({ where: { email } });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

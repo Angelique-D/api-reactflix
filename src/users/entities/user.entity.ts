@@ -1,28 +1,37 @@
-import { User } from '@prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-export class UserEntity implements User {
+@Entity()
+export class User {
+  @PrimaryGeneratedColumn()
   @ApiProperty()
   id: string;
 
+  @Column()
   @ApiProperty()
   email: string;
 
+  @Column()
   @ApiProperty()
   password: string;
 
+  @Column()
   @ApiProperty()
   name: string;
 
-  @ApiProperty({ required: false })
+  @Column()
+  @ApiProperty({ nullable: true })
   avatar: string;
 
-  @ApiProperty()
+  @Column()
+  @ApiProperty({ default: false })
   isAdmin: boolean;
 
+  @Column()
   @ApiProperty()
   createdAt: Date;
 
+  @Column()
   @ApiProperty()
   updateAt: Date;
 }
