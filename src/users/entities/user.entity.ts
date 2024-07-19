@@ -1,9 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   @ApiProperty()
   id: string;
 
@@ -20,18 +26,18 @@ export class User {
   name: string;
 
   @Column()
-  @ApiProperty({ nullable: true })
+  @ApiProperty({ required: false })
   avatar: string;
 
   @Column()
   @ApiProperty({ default: false })
   isAdmin: boolean;
 
-  @Column()
+  @CreateDateColumn()
   @ApiProperty()
   createdAt: Date;
 
-  @Column()
+  @UpdateDateColumn()
   @ApiProperty()
   updateAt: Date;
 }
